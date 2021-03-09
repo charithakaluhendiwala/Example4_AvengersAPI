@@ -1,4 +1,5 @@
 const express = require("express");
+const { collection, deleteOne } = require("../models/avengers");
 const router = express.Router(); 
 const Avenger = require("../models/avengers");
 
@@ -78,14 +79,16 @@ router.post("/", async (req,res) =>{
 router.delete("/:id", async (req,res) => {
     let requestedID =req.params.id;
     let dltavenger = await Avenger.findById(requestedID);
-    if (!avenger){
-        return res.status(404).send("No avenger found");
-    }
+    collection.deleteOne(dltavenger);
+
+    // if (!dltavenger){
+    //     return res.status(404).send("No avenger found");
+    // }
 
     // let DltItem = avengerArray.indexOf(avenger);
-    return res.send("Deleted ");
-    dltavenger = await dltavenger.save();
-    return res.send(dltavenger);
+    //return res.send("Deleted ");
+    // dltavenger = await dltavenger.save();
+    // return res.send(dltavenger);
 });
 
 
