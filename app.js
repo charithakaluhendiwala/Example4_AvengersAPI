@@ -5,10 +5,10 @@ const authentacation =require("./middleware/authentication");
 const emailsending = require("./middleware/emailsending");
 const users = require("./routes/users");
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 
-mongoose.connect("mongodb://localhost/avengersdb", {   
+mongoose.connect("mongodb+srv://root:<root>@avengers.wwzyu.mongodb.net/avengerDb?retryWrites=true&w=majority", {   
     useNewUrlParser: true,
     useUnifiedTopology: true 
     }
