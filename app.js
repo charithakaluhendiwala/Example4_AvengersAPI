@@ -2,9 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authentacation =require("./middleware/authentication");
-const emailsending = require ("./middleware/emailsending");
+const emailsending = require("./middleware/emailsending");
+const users = require("./routes/users");
 const app = express();
 const PORT = 5000;
+
 
 mongoose.connect("mongodb://localhost/avengersdb", {   
     useNewUrlParser: true,
@@ -22,10 +24,12 @@ const home = require ("./routes/home");
 app.use(cors());
 app.use(express.json());
 app.use(authentacation);
-app.use(emailsending);
+app.use(emailsending); 
 
-app.use("/api/avengers",avengers)
-app.use("/",home);
+app.use("/", home);
+app.use("/api/users", users);
+app.use("/api/avengers", avengers);
+
 
 app.listen(PORT, () => {
     console.log('Strarted listening on port '+PORT);
